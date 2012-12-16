@@ -1,0 +1,644 @@
+
+USART.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000002c2  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000316  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 00000068  00000000  00000000  00000336  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   00000366  00000000  00000000  0000039e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 000001ba  00000000  00000000  00000704  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   0000039b  00000000  00000000  000008be  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000070  00000000  00000000  00000c5c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    00000107  00000000  00000000  00000ccc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_loc    0000012a  00000000  00000000  00000dd3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e2 ec       	ldi	r30, 0xC2	; 194
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <.do_copy_data_start>
+
+0000006c <.do_copy_data_loop>:
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+
+00000070 <.do_copy_data_start>:
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <.do_copy_data_loop>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a0 36       	cpi	r26, 0x60	; 96
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 89 00 	call	0x112	; 0x112 <main>
+  8a:	0c 94 5f 01 	jmp	0x2be	; 0x2be <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <USART_Init>:
+		
+	}
+	return 0;
+}
+void USART_Init( unsigned int baud )
+{
+  92:	90 bd       	out	0x20, r25	; 32
+	UBRRH = (baud >> 8); ///Set baud rate
+	UBRRL = baud;
+  94:	89 b9       	out	0x09, r24	; 9
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+  96:	88 e1       	ldi	r24, 0x18	; 24
+  98:	8a b9       	out	0x0a, r24	; 10
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+  9a:	86 e8       	ldi	r24, 0x86	; 134
+  9c:	80 bd       	out	0x20, r24	; 32
+}
+  9e:	08 95       	ret
+
+000000a0 <USART_Transmit>:
+void USART_Transmit( unsigned char data )
+{
+  a0:	5d 9b       	sbis	0x0b, 5	; 11
+  a2:	fe cf       	rjmp	.-4      	; 0xa0 <USART_Transmit>
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+	UDR = data; //Put data into buffer, sends the data 
+  a4:	8c b9       	out	0x0c, r24	; 12
+ }
+  a6:	08 95       	ret
+
+000000a8 <USART_Receive>:
+unsigned char USART_Receive( void )
+{
+  a8:	5f 9b       	sbis	0x0b, 7	; 11
+  aa:	fe cf       	rjmp	.-4      	; 0xa8 <USART_Receive>
+	while ( !(UCSRA & (1<<RXC)) ); //Wait for data to be received 
+	return UDR; //Get and return received data from buffer 
+  ac:	8c b1       	in	r24, 0x0c	; 12
+}
+  ae:	08 95       	ret
+
+000000b0 <convert>:
+
+//convert the ascii chars to dec 
+int convert(char achar){
+  b0:	80 33       	cpi	r24, 0x30	; 48
+  b2:	19 f4       	brne	.+6      	; 0xba <convert+0xa>
+  b4:	20 e3       	ldi	r18, 0x30	; 48
+  b6:	30 e0       	ldi	r19, 0x00	; 0
+  b8:	2a c0       	rjmp	.+84     	; 0x10e <convert+0x5e>
+  if(achar == '0')  	 
+  	return 48;
+  else if(achar == '1')  
+  ba:	81 33       	cpi	r24, 0x31	; 49
+  bc:	19 f4       	brne	.+6      	; 0xc4 <convert+0x14>
+  be:	21 e3       	ldi	r18, 0x31	; 49
+  c0:	30 e0       	ldi	r19, 0x00	; 0
+  c2:	25 c0       	rjmp	.+74     	; 0x10e <convert+0x5e>
+  	return 49;
+  else if(achar == '2')  
+  c4:	82 33       	cpi	r24, 0x32	; 50
+  c6:	19 f4       	brne	.+6      	; 0xce <convert+0x1e>
+  c8:	22 e3       	ldi	r18, 0x32	; 50
+  ca:	30 e0       	ldi	r19, 0x00	; 0
+  cc:	20 c0       	rjmp	.+64     	; 0x10e <convert+0x5e>
+  	return 50;
+  else if(achar == '3')  
+  ce:	83 33       	cpi	r24, 0x33	; 51
+  d0:	19 f4       	brne	.+6      	; 0xd8 <convert+0x28>
+  d2:	23 e3       	ldi	r18, 0x33	; 51
+  d4:	30 e0       	ldi	r19, 0x00	; 0
+  d6:	1b c0       	rjmp	.+54     	; 0x10e <convert+0x5e>
+  	return 51;
+  else if(achar == '4')  
+  d8:	84 33       	cpi	r24, 0x34	; 52
+  da:	19 f4       	brne	.+6      	; 0xe2 <convert+0x32>
+  dc:	24 e3       	ldi	r18, 0x34	; 52
+  de:	30 e0       	ldi	r19, 0x00	; 0
+  e0:	16 c0       	rjmp	.+44     	; 0x10e <convert+0x5e>
+  	return 52;
+  else if(achar == '5')  
+  e2:	85 33       	cpi	r24, 0x35	; 53
+  e4:	19 f4       	brne	.+6      	; 0xec <convert+0x3c>
+  e6:	25 e3       	ldi	r18, 0x35	; 53
+  e8:	30 e0       	ldi	r19, 0x00	; 0
+  ea:	11 c0       	rjmp	.+34     	; 0x10e <convert+0x5e>
+  	return 53;
+  else if(achar == '6')  
+  ec:	86 33       	cpi	r24, 0x36	; 54
+  ee:	19 f4       	brne	.+6      	; 0xf6 <convert+0x46>
+  f0:	26 e3       	ldi	r18, 0x36	; 54
+  f2:	30 e0       	ldi	r19, 0x00	; 0
+  f4:	0c c0       	rjmp	.+24     	; 0x10e <convert+0x5e>
+  	return 54;
+  else if(achar == '7')  
+  f6:	87 33       	cpi	r24, 0x37	; 55
+  f8:	19 f4       	brne	.+6      	; 0x100 <convert+0x50>
+  fa:	27 e3       	ldi	r18, 0x37	; 55
+  fc:	30 e0       	ldi	r19, 0x00	; 0
+  fe:	07 c0       	rjmp	.+14     	; 0x10e <convert+0x5e>
+  	return 55;
+  else if(achar == '8')  
+ 100:	88 33       	cpi	r24, 0x38	; 56
+ 102:	19 f0       	breq	.+6      	; 0x10a <convert+0x5a>
+ 104:	29 e3       	ldi	r18, 0x39	; 57
+ 106:	30 e0       	ldi	r19, 0x00	; 0
+ 108:	02 c0       	rjmp	.+4      	; 0x10e <convert+0x5e>
+ 10a:	28 e3       	ldi	r18, 0x38	; 56
+ 10c:	30 e0       	ldi	r19, 0x00	; 0
+  	return 56;
+  else					 
+  	return 57;
+}
+ 10e:	c9 01       	movw	r24, r18
+ 110:	08 95       	ret
+
+00000112 <main>:
+void USART_Transmit(unsigned char data); //Transmission
+unsigned char USART_Receive(void); //Receive
+int convert(char);
+void delay_ms(uint16_t x);
+
+int main(){
+ 112:	2f 92       	push	r2
+ 114:	3f 92       	push	r3
+ 116:	4f 92       	push	r4
+ 118:	5f 92       	push	r5
+ 11a:	6f 92       	push	r6
+ 11c:	7f 92       	push	r7
+ 11e:	8f 92       	push	r8
+ 120:	9f 92       	push	r9
+ 122:	af 92       	push	r10
+ 124:	bf 92       	push	r11
+ 126:	cf 92       	push	r12
+ 128:	df 92       	push	r13
+ 12a:	ef 92       	push	r14
+ 12c:	ff 92       	push	r15
+ 12e:	0f 93       	push	r16
+ 130:	1f 93       	push	r17
+ 132:	cf 93       	push	r28
+ 134:	df 93       	push	r29
+	unsigned char storage[3];
+	int hun = 0, ten = 0, one = 0, final = 0;
+	int base = 48;
+	int sensor1 = 0;
+	int sensor2 = 0;
+	DDRB = 0b11111111;
+ 136:	8f ef       	ldi	r24, 0xFF	; 255
+ 138:	87 bb       	out	0x17, r24	; 23
+	DDRD = 0b01011000;
+ 13a:	88 e5       	ldi	r24, 0x58	; 88
+ 13c:	81 bb       	out	0x11, r24	; 17
+	}
+	return 0;
+}
+void USART_Init( unsigned int baud )
+{
+	UBRRH = (baud >> 8); ///Set baud rate
+ 13e:	10 bc       	out	0x20, r1	; 32
+	UBRRL = baud;
+ 140:	83 e3       	ldi	r24, 0x33	; 51
+ 142:	89 b9       	out	0x09, r24	; 9
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+ 144:	88 e1       	ldi	r24, 0x18	; 24
+ 146:	8a b9       	out	0x0a, r24	; 10
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+ 148:	86 e8       	ldi	r24, 0x86	; 134
+ 14a:	80 bd       	out	0x20, r24	; 32
+ 14c:	c0 e0       	ldi	r28, 0x00	; 0
+ 14e:	d0 e0       	ldi	r29, 0x00	; 0
+ 150:	88 24       	eor	r8, r8
+ 152:	99 24       	eor	r9, r9
+ 154:	aa 24       	eor	r10, r10
+ 156:	bb 24       	eor	r11, r11
+  			one = one - base;
+  
+ 			final = hun + ten + one; //final value should match storage
+
+			//test cases
+			if(final <= 25){ //vibrate if less than 24 inches away
+ 158:	04 e6       	ldi	r16, 0x64	; 100
+ 15a:	60 2e       	mov	r6, r16
+ 15c:	71 2c       	mov	r7, r1
+				}
+				if(sensor1 == 1){
+					PORTB = (0 << PB2);
+					PORTD = (1 << PD3); //TRI COLOR LED SENSOR I3
+					
+					PORTD = (1 << PD6);
+ 15e:	10 e4       	ldi	r17, 0x40	; 64
+ 160:	21 2e       	mov	r2, r17
+					delay_ms(1000);
+					PORTD = (0 << PD6);
+				
+					PORTD = (0 << PD3); //TRI COLOR LED SENSOR I3	
+					PORTB = (1 << PB2);
+ 162:	b4 e0       	ldi	r27, 0x04	; 4
+ 164:	3b 2e       	mov	r3, r27
+
+			//test cases
+			if(final <= 25){ //vibrate if less than 24 inches away
+				if(sensor2 == 1){
+					PORTB = (0 << PB7);
+					PORTD = (1 << PD4);				
+ 166:	a0 e1       	ldi	r26, 0x10	; 16
+ 168:	4a 2e       	mov	r4, r26
+
+					PORTB = (1 << PB1);
+ 16a:	f2 e0       	ldi	r31, 0x02	; 2
+ 16c:	5f 2e       	mov	r5, r31
+					delay_ms(1000);
+					PORTB = (0 << PB1);
+					
+					PORTD = (0 << PD4);
+					PORTB = (1 << PB7);
+ 16e:	e0 e8       	ldi	r30, 0x80	; 128
+ 170:	ce 2e       	mov	r12, r30
+	DDRD = 0b01011000;
+		
+	USART_Init(51); //Initilize to 9600bps
+	for(;;){
+
+		count++; // for switching between the sensors
+ 172:	21 96       	adiw	r28, 0x01	; 1
+		PORTD = (0 << PD3); //TRI COLOR LED SENSOR I3
+ 174:	12 ba       	out	0x12, r1	; 18
+		PORTD = (0 << PD7); //TRI COLOR LED SENSOR I3
+ 176:	12 ba       	out	0x12, r1	; 18
+		
+		if(count < 10){ // first sensor I1
+ 178:	ca 30       	cpi	r28, 0x0A	; 10
+ 17a:	d1 05       	cpc	r29, r1
+ 17c:	3c f4       	brge	.+14     	; 0x18c <main+0x7a>
+			PORTB = (1 << PB2) | (1 << PB3) | 
+ 17e:	2c e0       	ldi	r18, 0x0C	; 12
+ 180:	28 bb       	out	0x18, r18	; 24
+ 182:	71 e0       	ldi	r23, 0x01	; 1
+ 184:	87 2e       	mov	r8, r23
+ 186:	91 2c       	mov	r9, r1
+ 188:	aa 24       	eor	r10, r10
+ 18a:	bb 24       	eor	r11, r11
+			(0 << PB4) | (0 << PB5) | (0 << PB6) | (0 << PB7);
+			sensor1 = 1;
+			sensor2 = 0;
+		}
+
+		if(count > 10 && count <= 20){ // second sensor I3
+ 18c:	ce 01       	movw	r24, r28
+ 18e:	0b 97       	sbiw	r24, 0x0b	; 11
+ 190:	0a 97       	sbiw	r24, 0x0a	; 10
+ 192:	38 f4       	brcc	.+14     	; 0x1a2 <main+0x90>
+			PORTB = (0 << PB2) | (1 << PB3) | 
+ 194:	38 e9       	ldi	r19, 0x98	; 152
+ 196:	38 bb       	out	0x18, r19	; 24
+ 198:	88 24       	eor	r8, r8
+ 19a:	99 24       	eor	r9, r9
+ 19c:	61 e0       	ldi	r22, 0x01	; 1
+ 19e:	a6 2e       	mov	r10, r22
+ 1a0:	b1 2c       	mov	r11, r1
+			(1 << PB4) | (0 << PB5) | (0 << PB6) | (1 << PB7);
+			sensor2 = 1;
+			sensor1 = 0;
+		} 
+		
+		if(count >= 21) 
+ 1a2:	c5 31       	cpi	r28, 0x15	; 21
+ 1a4:	d1 05       	cpc	r29, r1
+ 1a6:	14 f0       	brlt	.+4      	; 0x1ac <main+0x9a>
+ 1a8:	c0 e0       	ldi	r28, 0x00	; 0
+ 1aa:	d0 e0       	ldi	r29, 0x00	; 0
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+	UDR = data; //Put data into buffer, sends the data 
+ }
+unsigned char USART_Receive( void )
+{
+	while ( !(UCSRA & (1<<RXC)) ); //Wait for data to be received 
+ 1ac:	5f 9b       	sbis	0x0b, 7	; 11
+ 1ae:	fe cf       	rjmp	.-4      	; 0x1ac <main+0x9a>
+	return UDR; //Get and return received data from buffer 
+ 1b0:	8c b1       	in	r24, 0x0c	; 12
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+}
+void USART_Transmit( unsigned char data )
+{
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+ 1b2:	5d 9b       	sbis	0x0b, 5	; 11
+ 1b4:	fe cf       	rjmp	.-4      	; 0x1b2 <main+0xa0>
+	UDR = data; //Put data into buffer, sends the data 
+ 1b6:	8c b9       	out	0x0c, r24	; 12
+
+		data2 = USART_Receive();
+		USART_Transmit(data2);
+
+		
+		if(data2 == 0x52){ //if data = R
+ 1b8:	82 35       	cpi	r24, 0x52	; 82
+ 1ba:	d9 f6       	brne	.-74     	; 0x172 <main+0x60>
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+	UDR = data; //Put data into buffer, sends the data 
+ }
+unsigned char USART_Receive( void )
+{
+	while ( !(UCSRA & (1<<RXC)) ); //Wait for data to be received 
+ 1bc:	5f 9b       	sbis	0x0b, 7	; 11
+ 1be:	fe cf       	rjmp	.-4      	; 0x1bc <main+0xaa>
+	return UDR; //Get and return received data from buffer 
+ 1c0:	8c b1       	in	r24, 0x0c	; 12
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+	UDR = data; //Put data into buffer, sends the data 
+ }
+unsigned char USART_Receive( void )
+{
+	while ( !(UCSRA & (1<<RXC)) ); //Wait for data to be received 
+ 1c2:	5f 9b       	sbis	0x0b, 7	; 11
+ 1c4:	fe cf       	rjmp	.-4      	; 0x1c2 <main+0xb0>
+	return UDR; //Get and return received data from buffer 
+ 1c6:	0c b1       	in	r16, 0x0c	; 12
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+	UDR = data; //Put data into buffer, sends the data 
+ }
+unsigned char USART_Receive( void )
+{
+	while ( !(UCSRA & (1<<RXC)) ); //Wait for data to be received 
+ 1c8:	5f 9b       	sbis	0x0b, 7	; 11
+ 1ca:	fe cf       	rjmp	.-4      	; 0x1c8 <main+0xb6>
+	return UDR; //Get and return received data from buffer 
+ 1cc:	dc b0       	in	r13, 0x0c	; 12
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+}
+void USART_Transmit( unsigned char data )
+{
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+ 1ce:	5d 9b       	sbis	0x0b, 5	; 11
+ 1d0:	fe cf       	rjmp	.-4      	; 0x1ce <main+0xbc>
+	UDR = data; //Put data into buffer, sends the data 
+ 1d2:	8c b9       	out	0x0c, r24	; 12
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+}
+void USART_Transmit( unsigned char data )
+{
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+ 1d4:	5d 9b       	sbis	0x0b, 5	; 11
+ 1d6:	fe cf       	rjmp	.-4      	; 0x1d4 <main+0xc2>
+	UDR = data; //Put data into buffer, sends the data 
+ 1d8:	0c b9       	out	0x0c, r16	; 12
+	UCSRB = (1<<RXEN)|(1<<TXEN); //Enable RX and TX
+	UCSRC = (1<<URSEL)  | (3<<UCSZ0) ; //8 data bits . 1 stop bit.
+}
+void USART_Transmit( unsigned char data )
+{
+	while ( !( UCSRA & (1<<UDRE)) ); // Wait for empty transmit buffer 
+ 1da:	5d 9b       	sbis	0x0b, 5	; 11
+ 1dc:	fe cf       	rjmp	.-4      	; 0x1da <main+0xc8>
+	UDR = data; //Put data into buffer, sends the data 
+ 1de:	dc b8       	out	0x0c, r13	; 12
+			USART_Transmit(storage[0]); //output the distance
+			USART_Transmit(storage[1]);
+			USART_Transmit(storage[2]);
+
+			//convert to a number, makes it easier to use
+			hun = convert(storage[0]);
+ 1e0:	0e 94 58 00 	call	0xb0	; 0xb0 <convert>
+ 1e4:	7c 01       	movw	r14, r24
+  			ten = convert(storage[1]);
+ 1e6:	80 2f       	mov	r24, r16
+ 1e8:	0e 94 58 00 	call	0xb0	; 0xb0 <convert>
+ 1ec:	8c 01       	movw	r16, r24
+  			one = convert(storage[2]);
+ 1ee:	8d 2d       	mov	r24, r13
+ 1f0:	0e 94 58 00 	call	0xb0	; 0xb0 <convert>
+	
+			//make it integer total value
+			hun = (hun - base) * 100;
+ 1f4:	20 ed       	ldi	r18, 0xD0	; 208
+ 1f6:	3f ef       	ldi	r19, 0xFF	; 255
+ 1f8:	e2 0e       	add	r14, r18
+ 1fa:	f3 1e       	adc	r15, r19
+  			ten = (ten - base) * 10;
+ 1fc:	00 53       	subi	r16, 0x30	; 48
+ 1fe:	10 40       	sbci	r17, 0x00	; 0
+  			one = one - base;
+  
+ 			final = hun + ten + one; //final value should match storage
+ 200:	c0 97       	sbiw	r24, 0x30	; 48
+
+			//test cases
+			if(final <= 25){ //vibrate if less than 24 inches away
+ 202:	e6 9c       	mul	r14, r6
+ 204:	90 01       	movw	r18, r0
+ 206:	e7 9c       	mul	r14, r7
+ 208:	30 0d       	add	r19, r0
+ 20a:	f6 9c       	mul	r15, r6
+ 20c:	30 0d       	add	r19, r0
+ 20e:	11 24       	eor	r1, r1
+ 210:	82 0f       	add	r24, r18
+ 212:	93 1f       	adc	r25, r19
+ 214:	98 01       	movw	r18, r16
+ 216:	53 e0       	ldi	r21, 0x03	; 3
+ 218:	22 0f       	add	r18, r18
+ 21a:	33 1f       	adc	r19, r19
+ 21c:	5a 95       	dec	r21
+ 21e:	e1 f7       	brne	.-8      	; 0x218 <main+0x106>
+ 220:	00 0f       	add	r16, r16
+ 222:	11 1f       	adc	r17, r17
+ 224:	20 0f       	add	r18, r16
+ 226:	31 1f       	adc	r19, r17
+ 228:	82 0f       	add	r24, r18
+ 22a:	93 1f       	adc	r25, r19
+ 22c:	4a 97       	sbiw	r24, 0x1a	; 26
+ 22e:	0c f0       	brlt	.+2      	; 0x232 <main+0x120>
+ 230:	a0 cf       	rjmp	.-192    	; 0x172 <main+0x60>
+				if(sensor2 == 1){
+ 232:	31 e0       	ldi	r19, 0x01	; 1
+ 234:	a3 16       	cp	r10, r19
+ 236:	b1 04       	cpc	r11, r1
+ 238:	b1 f4       	brne	.+44     	; 0x266 <main+0x154>
+					PORTB = (0 << PB7);
+ 23a:	18 ba       	out	0x18, r1	; 24
+					PORTD = (1 << PD4);				
+ 23c:	42 ba       	out	0x12, r4	; 18
+
+					PORTB = (1 << PB1);
+ 23e:	58 ba       	out	0x18, r5	; 24
+ 240:	88 ee       	ldi	r24, 0xE8	; 232
+ 242:	93 e0       	ldi	r25, 0x03	; 3
+ 244:	0b c0       	rjmp	.+22     	; 0x25c <main+0x14a>
+	...
+//General short delays
+void delay_ms(uint16_t x)
+{
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+    for ( y = 0 ; y < 90 ; y++){
+ 252:	2f 5f       	subi	r18, 0xFF	; 255
+ 254:	2a 35       	cpi	r18, 0x5A	; 90
+ 256:	b9 f7       	brne	.-18     	; 0x246 <main+0x134>
+
+//General short delays
+void delay_ms(uint16_t x)
+{
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+ 258:	01 97       	sbiw	r24, 0x01	; 1
+ 25a:	11 f0       	breq	.+4      	; 0x260 <main+0x14e>
+ 25c:	20 e0       	ldi	r18, 0x00	; 0
+ 25e:	f3 cf       	rjmp	.-26     	; 0x246 <main+0x134>
+					PORTB = (0 << PB7);
+					PORTD = (1 << PD4);				
+
+					PORTB = (1 << PB1);
+					delay_ms(1000);
+					PORTB = (0 << PB1);
+ 260:	18 ba       	out	0x18, r1	; 24
+					
+					PORTD = (0 << PD4);
+ 262:	12 ba       	out	0x12, r1	; 18
+					PORTB = (1 << PB7);
+ 264:	c8 ba       	out	0x18, r12	; 24
+				}
+				if(sensor1 == 1){
+ 266:	81 e0       	ldi	r24, 0x01	; 1
+ 268:	88 16       	cp	r8, r24
+ 26a:	91 04       	cpc	r9, r1
+ 26c:	09 f0       	breq	.+2      	; 0x270 <main+0x15e>
+ 26e:	81 cf       	rjmp	.-254    	; 0x172 <main+0x60>
+					PORTB = (0 << PB2);
+ 270:	18 ba       	out	0x18, r1	; 24
+					PORTD = (1 << PD3); //TRI COLOR LED SENSOR I3
+ 272:	28 e0       	ldi	r18, 0x08	; 8
+ 274:	22 bb       	out	0x12, r18	; 18
+					
+					PORTD = (1 << PD6);
+ 276:	22 ba       	out	0x12, r2	; 18
+ 278:	88 ee       	ldi	r24, 0xE8	; 232
+ 27a:	93 e0       	ldi	r25, 0x03	; 3
+ 27c:	0b c0       	rjmp	.+22     	; 0x294 <main+0x182>
+	...
+//General short delays
+void delay_ms(uint16_t x)
+{
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+    for ( y = 0 ; y < 90 ; y++){
+ 28a:	2f 5f       	subi	r18, 0xFF	; 255
+ 28c:	2a 35       	cpi	r18, 0x5A	; 90
+ 28e:	b9 f7       	brne	.-18     	; 0x27e <main+0x16c>
+
+//General short delays
+void delay_ms(uint16_t x)
+{
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+ 290:	01 97       	sbiw	r24, 0x01	; 1
+ 292:	11 f0       	breq	.+4      	; 0x298 <main+0x186>
+ 294:	20 e0       	ldi	r18, 0x00	; 0
+ 296:	f3 cf       	rjmp	.-26     	; 0x27e <main+0x16c>
+					PORTB = (0 << PB2);
+					PORTD = (1 << PD3); //TRI COLOR LED SENSOR I3
+					
+					PORTD = (1 << PD6);
+					delay_ms(1000);
+					PORTD = (0 << PD6);
+ 298:	12 ba       	out	0x12, r1	; 18
+				
+					PORTD = (0 << PD3); //TRI COLOR LED SENSOR I3	
+ 29a:	12 ba       	out	0x12, r1	; 18
+					PORTB = (1 << PB2);
+ 29c:	38 ba       	out	0x18, r3	; 24
+ 29e:	69 cf       	rjmp	.-302    	; 0x172 <main+0x60>
+
+000002a0 <delay_ms>:
+}
+
+
+//General short delays
+void delay_ms(uint16_t x)
+{
+ 2a0:	0b c0       	rjmp	.+22     	; 0x2b8 <delay_ms+0x18>
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+ 2a2:	20 e0       	ldi	r18, 0x00	; 0
+	...
+    for ( y = 0 ; y < 90 ; y++){
+ 2b0:	2f 5f       	subi	r18, 0xFF	; 255
+ 2b2:	2a 35       	cpi	r18, 0x5A	; 90
+ 2b4:	b9 f7       	brne	.-18     	; 0x2a4 <delay_ms+0x4>
+
+//General short delays
+void delay_ms(uint16_t x)
+{
+  uint8_t y, z;
+  for ( ; x > 0 ; x--){
+ 2b6:	01 97       	sbiw	r24, 0x01	; 1
+ 2b8:	00 97       	sbiw	r24, 0x00	; 0
+ 2ba:	99 f7       	brne	.-26     	; 0x2a2 <delay_ms+0x2>
+      for ( z = 0 ; z < 6 ; z++){
+        asm volatile ("nop");
+      }
+    }
+  }
+}
+ 2bc:	08 95       	ret
+
+000002be <_exit>:
+ 2be:	f8 94       	cli
+
+000002c0 <__stop_program>:
+ 2c0:	ff cf       	rjmp	.-2      	; 0x2c0 <__stop_program>
